@@ -5,11 +5,11 @@ import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
-import {} from "./modals/itemModal/item-modal.component";
+import { ItemModalComponent } from "./modals/itemModal/item-modal.component";
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, NgbModule],
-  declarations: [AppComponent],
+  declarations: [AppComponent, ItemModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

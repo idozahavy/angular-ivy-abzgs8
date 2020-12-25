@@ -1,5 +1,7 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, VERSION } from "@angular/core";
+import { Component, VERSION, ViewChild } from "@angular/core";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ItemModalComponent } from "./modals/itemModal/item-modal.component";
 
 @Component({
   selector: "my-app",
@@ -12,6 +14,9 @@ export class AppComponent {
   headers: string[];
   items: object[];
 
+  @ViewChild("content")
+  content: any;
+
   classForItemHeaderValue = {
     ShipCountry: {
       France: "bg-red",
@@ -22,7 +27,7 @@ export class AppComponent {
     }
   };
 
-  constructor(httpClient: HttpClient) {
+  constructor(httpClient: HttpClient, private modals: NgbModal) {
     httpClient.get<any>(AppComponent.JSON_URL).subscribe(
       json => {
         this.createTable(json);
@@ -53,7 +58,10 @@ export class AppComponent {
     }
   }
 
-  openItemModal(item){
-
+  openItemModal(item) {
+    let modal = this.modals.open(ItemModalComponent, {
+      ariaLabelledBy: "modal-basic-title"
+    });
+    modal.componentInstance.showItem(item);
   }
 }
