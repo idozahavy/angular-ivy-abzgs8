@@ -1,0 +1,18 @@
+<table>
+	<thead>
+		<tr>
+			<th *ngFor="let header of headers">
+				{{header}}
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of items" (click)="openItemModal(item)">
+			<td *ngFor="let header of headers" [ngClass]="getClass(item, header)">
+				{{item[header]}}
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- <app-item-modal></app-item-modal> -->
